@@ -1,3 +1,4 @@
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -9,16 +10,22 @@ public class Bank {
 	private String name;
 	private List<Client> clients;
 
-	private Bank(String name) {
+	private Bank(String name) throws SQLException {
 		this.name = name;
 		List<Client> clients = new ArrayList<Client>();
-		for (int i = 0; i < 99; i++) {
-			clients.add(clientMaker());
+		if (UserRepository.getAllUsers() == null) {
+			for (int i = 0; i < 99; i++) {
+				clients.add(clientMaker());
+			}
+		} else {
+			clients = UserRepository.getAllUsers(); 
 		}
+		
+		
 		setClients(clients);
 	}
 
-	public static Bank getInstance() {
+	public static Bank getInstance() throws SQLException {
 		if (instance == null) {
 			synchronized (Bank.class) {
 				if (instance == null) {

@@ -4,10 +4,11 @@ import java.sql.SQLException;
 public abstract class Client {
 
 	private String name;
-	private int accountNumber;
+	private int acountNumber;
 	private int id;
 	static int idcounter = 1;
-	static int nameCounter = 1;
+	static private int nameCounter = 1;
+	protected String rank;
 	protected double ballance;
 	protected int commition;
 	protected int credit;
@@ -20,9 +21,19 @@ public abstract class Client {
 	public Client() {
 		this.name = ("cleint no` " + nameCounter);
 		nameCounter++;
-		this.accountNumber = (int) (Math.random() * 1000000);
+		this.acountNumber = (int) (Math.random() * 1000000);
 		this.id = idcounter;
 		idcounter++;
+	}
+
+	
+	public Client(String name, int acountNumber, int id, String rank, double ballance) {
+		super();
+		this.name = name;
+		this.acountNumber = acountNumber;
+		this.id = id;
+		this.rank = rank;
+		this.ballance = ballance;
 	}
 
 	public int getId() {
@@ -31,6 +42,14 @@ public abstract class Client {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getRank() {
+		return rank;
+	}
+
+	public void setRank(String rank) {
+		this.rank = rank;
 	}
 
 	public double getBallance() {
@@ -58,11 +77,11 @@ public abstract class Client {
 	}
 
 	public int getAcountNumber() {
-		return accountNumber;
+		return acountNumber;
 	}
 
 	public void setAcountNumber(int acountNumber) {
-		this.accountNumber = acountNumber;
+		this.acountNumber = acountNumber;
 	}
 
 	public int getCredit() {
@@ -83,7 +102,7 @@ public abstract class Client {
 
 	@Override
 	public String toString() {
-		return "Client [name=" + name + ", acountNumber=" + accountNumber + "]";
+		return "Client [name=" + name + ", acountNumber=" + acountNumber + "]";
 	}
 
 }

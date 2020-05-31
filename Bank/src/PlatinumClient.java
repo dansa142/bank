@@ -4,12 +4,19 @@ import java.sql.SQLException;
 public class PlatinumClient extends Client {
 
 	private double ballance;
+	private String rank; 
 	private static final int commition = 0;
-	private static final int credit = -250000;
+	private static final int credit = -100000000;
 	private static final double intrestRate = 2.5;
 
 	public PlatinumClient() {
-		this.ballance = Math.random() * 100000000;
+		this.rank="Platinum Client"; 
+		int x = (int) (Math.random() * 4) + 1;
+		if (x <= 3) {
+			this.ballance = Math.random() * 100000000;
+		} else {
+			this.ballance = Math.random() * -100000000;
+		}
 		try {
 			Loging.exportBankClient(this);
 		} catch (IOException e) {
@@ -28,6 +35,7 @@ public class PlatinumClient extends Client {
 
 	public PlatinumClient(double ballance) {
 		super();
+		this.rank="Platinum Client";
 		this.ballance = ballance;
 		try {
 			Loging.exportBankClient(this);
@@ -43,6 +51,21 @@ public class PlatinumClient extends Client {
 			e.printStackTrace();
 		}
 
+	}
+	
+	
+
+	public PlatinumClient(String name, int acountNumber, int id, String rank, double ballance) {
+		super(name, acountNumber, id, rank, ballance);
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getRank() {
+		return rank;
+	}
+
+	public void setRank(String rank) {
+		this.rank = rank;
 	}
 
 	public int getCommition() {

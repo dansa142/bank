@@ -14,12 +14,13 @@ public class UserRepository {
 		Connection connection = null;
 		try {
 			connection = DriverManager.getConnection(DataBase.url, DataBase.username, DataBase.password);
-			String sql = "INSERT INTO `Bank`.`clients` (ID, NAME , AcountNumber, Ballance) VALUES(?,?,?,?)";
+			String sql = "INSERT INTO `Bank`.`clients` (ID, ClientRank, NAME, AcountNumber, Ballance) VALUES(?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setInt(1, client.getId());
-			statement.setString(2, client.getName());
-			statement.setInt(3, client.getAcountNumber());
-			statement.setDouble(4, client.getBallance());
+			statement.setString(2, client.getRank());
+			statement.setString(3, client.getName());
+			statement.setInt(4, client.getAcountNumber());
+			statement.setDouble(5, client.getBallance());
 
 			statement.executeUpdate();
 		} catch (SQLException e) {
@@ -89,10 +90,26 @@ public class UserRepository {
 			while (resultSet.next()) {
 
 				int id = resultSet.getInt(1);
-				String name = resultSet.getString(2);
-				int AcountNumber = resultSet.getInt(3);
-				double ballance = resultSet.getDouble(4);
-				clientsTable.add(Client(id, name, AcountNumber, ballance));
+				String rank = resultSet.getString(2);
+				String name = resultSet.getString(3);
+				int acountNumber = resultSet.getInt(4);
+				double ballance = resultSet.getDouble(5);
+
+				switch (rank) {
+				case "Reguler Client":
+
+					clientsTable.add(new RegulerClient(name, acountNumber, id, rank, ballance));
+					break;
+
+				case "Platinum Client":
+					clientsTable.add(new PlatinumClient(name, acountNumber, id, rank, ballance));
+
+				case "PrimumClient":
+					clientsTable.add(new PrimumClient(name, acountNumber, id, rank, ballance));
+
+				default:
+					break;
+				}
 
 			}
 		} catch (SQLException e) {
@@ -104,8 +121,6 @@ public class UserRepository {
 
 	}
 
-	private static Client Client(int id, String name, int acountNumber, double ballance) {
-		return null;
-	}
+	
 
 }

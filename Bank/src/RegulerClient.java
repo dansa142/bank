@@ -6,12 +6,20 @@ public class RegulerClient extends Client {
 	Scanner scanner = new Scanner(System.in);
 
 	private double ballance;
+	private String rank;
 	private static final int commition = 10;
-	private static final int credit = -5000;
+	private static final int credit = -10000;
 	private static final double intrestRate = 10.0;
 
 	public RegulerClient() {
-		this.ballance = Math.random() * 10000;
+		this.rank = "Reguler Client";
+		int x = (int) (Math.random() * 4) + 1;
+		if (x <= 3) {
+			this.ballance = Math.random() * 10000;
+		} else {
+			this.ballance = Math.random() * -10000;
+		}
+
 		try {
 			Loging.exportBankClient(this);
 		} catch (IOException e) {
@@ -28,6 +36,7 @@ public class RegulerClient extends Client {
 	}
 
 	public RegulerClient(double ballance) {
+		this.rank = "Reguler Client";
 		this.ballance = ballance;
 		try {
 			Loging.exportBankClient(this);
@@ -41,6 +50,19 @@ public class RegulerClient extends Client {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public RegulerClient(String name, int acountNumber, int id, String rank, double ballance) {
+		super(name, acountNumber, id, rank, ballance);
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getRank() {
+		return rank;
+	}
+
+	public void setRank(String rank) {
+		this.rank = rank;
 	}
 
 	public int getCommition() {

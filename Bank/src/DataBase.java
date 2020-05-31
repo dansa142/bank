@@ -15,8 +15,8 @@ public class DataBase {
 		try {
 			connection = DriverManager.getConnection(url, username, password);
 
-			String sql = "CREATE TABLE Bank.clients" + "(ID INT PRIMARY KEY NOT NULL, " + "NAME VARCHAR(20) NOT NULL, "
-					+ "AcountNumber INT NOT NULL, " + "Ballance DOUBLE NOT NULL)";
+			String sql = "CREATE TABLE Bank.clients" + "(ID INT PRIMARY KEY NOT NULL, " + "ClientRank VARCHAR(20) NOT NULL, "
+					+ "NAME VARCHAR(20) NOT NULL, " + "AcountNumber INT NOT NULL, " + "Ballance DOUBLE NOT NULL)";
 
 			Statement statement = connection.createStatement();
 			statement.executeUpdate(sql);
