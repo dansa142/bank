@@ -15,10 +15,10 @@ public class PlatinumClient extends Client {
 		if (x <= 3) {
 			this.ballance = Math.random() * 100000000;
 		} else {
-			this.ballance = Math.random() * -100000000;
+			this.ballance = Math.random() * -500000;
 		}
 		try {
-			Loging.exportBankClient(this);
+			Logging.exportBankClient(this);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -38,7 +38,7 @@ public class PlatinumClient extends Client {
 		this.rank="Platinum Client";
 		this.ballance = ballance;
 		try {
-			Loging.exportBankClient(this);
+			Logging.exportBankClient(this);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -93,7 +93,7 @@ public class PlatinumClient extends Client {
 		check = (getBallance() - (amount + commition));
 		if (check >= credit) {
 			setBallance(check);
-			Loging.recored(this, 0, amount);
+			Logging.recored(this, 0, amount);
 			UserRepository.updateUser(this);
 		} else {
 			throw new BallanceExeption(this);
@@ -103,7 +103,7 @@ public class PlatinumClient extends Client {
 
 	public void deposit(int amount) throws IOException, SQLException {
 		setBallance(ballance + (amount - commition));
-		Loging.recored(this, 1, amount);
+		Logging.recored(this, 1, amount);
 		UserRepository.updateUser(this);
 	}
 

@@ -17,11 +17,11 @@ public class RegulerClient extends Client {
 		if (x <= 3) {
 			this.ballance = Math.random() * 10000;
 		} else {
-			this.ballance = Math.random() * -10000;
+			this.ballance = Math.random() * -5000;
 		}
 
 		try {
-			Loging.exportBankClient(this);
+			Logging.exportBankClient(this);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -39,7 +39,7 @@ public class RegulerClient extends Client {
 		this.rank = "Reguler Client";
 		this.ballance = ballance;
 		try {
-			Loging.exportBankClient(this);
+			Logging.exportBankClient(this);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -90,7 +90,7 @@ public class RegulerClient extends Client {
 		check = (getBallance() - (amount + commition));
 		if (check >= credit) {
 			setBallance(check);
-			Loging.recored(this, 0, amount);
+			Logging.recored(this, 0, amount);
 			UserRepository.updateUser(this);
 
 		} else {
@@ -101,11 +101,11 @@ public class RegulerClient extends Client {
 
 	public void deposit(int amount) throws IOException, SQLException {
 		setBallance(ballance + (amount - commition));
-		Loging.recored(this, 1, amount);
+		Logging.recored(this, 1, amount);
 		UserRepository.updateUser(this);
 	}
 
-	@Override
+	@Override 
 	public String toString() {
 		return "Reguler Client  / Name: " + String.format("%14s", getName()) + "; Acount number: "
 				+ String.format("%08d", getAcountNumber()) + "; Ballance: " + String.format("%12.2f", ballance);

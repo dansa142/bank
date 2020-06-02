@@ -13,7 +13,7 @@ public class UserRepository {
 
 		Connection connection = null;
 		try {
-			connection = DriverManager.getConnection(DataBase.url, DataBase.username, DataBase.password);
+			connection = DriverManager.getConnection(DataBase.getUrl(), DataBase.getUsername(), DataBase.getPassword());
 			String sql = "INSERT INTO `Bank`.`clients` (ID, ClientRank, NAME, AcountNumber, Ballance) VALUES(?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setInt(1, client.getId());
@@ -36,7 +36,7 @@ public class UserRepository {
 
 		Connection connection = null;
 		try {
-			connection = DriverManager.getConnection(DataBase.url, DataBase.username, DataBase.password);
+			connection = DriverManager.getConnection(DataBase.getUrl(), DataBase.getUsername(), DataBase.getPassword());
 			String sql = "UPDATE `bank`.`clients` SET NAME=?, AcountNumber=?, Ballance=? WHERE ID=?";
 
 			PreparedStatement statement = connection.prepareStatement(sql);
@@ -60,7 +60,7 @@ public class UserRepository {
 		Connection connection = null;
 
 		try {
-			connection = DriverManager.getConnection(DataBase.url, DataBase.username, DataBase.password);
+			connection = DriverManager.getConnection(DataBase.getUrl(), DataBase.getUsername(), DataBase.getPassword());
 
 			String sql = "DELETE from bank.clients where id=?";
 
@@ -81,7 +81,7 @@ public class UserRepository {
 		Connection connection = null;
 
 		try {
-			connection = DriverManager.getConnection(DataBase.url, DataBase.username, DataBase.password);
+			connection = DriverManager.getConnection(DataBase.getUrl(), DataBase.getUsername(), DataBase.getPassword());
 
 			String sql = "SELECT * from bank.clients";
 			Statement statement = connection.createStatement();
@@ -104,7 +104,7 @@ public class UserRepository {
 				case "Platinum Client":
 					clientsTable.add(new PlatinumClient(name, acountNumber, id, rank, ballance));
 
-				case "PrimumClient":
+				case "Primum Client":
 					clientsTable.add(new PrimumClient(name, acountNumber, id, rank, ballance));
 
 				default:

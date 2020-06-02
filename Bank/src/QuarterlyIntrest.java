@@ -14,7 +14,7 @@ public class QuarterlyIntrest extends Thread {
 						client.setBallance(temp);
 						amount = Math.abs((client.getBallance() * client.getIntrestRate()) / 100);
 						try {
-							Loging.recored(client, 2, amount);
+							Logging.recored(client, 2, amount);
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -35,7 +35,7 @@ public class QuarterlyIntrest extends Thread {
 				e1.printStackTrace();
 			}
 			try {
-				Thread.sleep(240000);
+				Thread.sleep(90000);
 			} catch (InterruptedException e) {
 
 				e.printStackTrace();

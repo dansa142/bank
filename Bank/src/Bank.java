@@ -13,15 +13,14 @@ public class Bank {
 	private Bank(String name) throws SQLException {
 		this.name = name;
 		List<Client> clients = new ArrayList<Client>();
-		if (UserRepository.getAllUsers() == null) {
+		if (UserRepository.getAllUsers() == null || UserRepository.getAllUsers().size() == 0) {
 			for (int i = 0; i < 99; i++) {
 				clients.add(clientMaker());
 			}
 		} else {
-			clients = UserRepository.getAllUsers(); 
+			clients = UserRepository.getAllUsers();
 		}
-		
-		
+
 		setClients(clients);
 	}
 
